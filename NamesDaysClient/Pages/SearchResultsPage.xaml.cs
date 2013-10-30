@@ -77,6 +77,33 @@ namespace NamesDaysClient.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
+            this.Loaded += PageLoaded;
+            this.Unloaded += PageUnloaded;
+        }
+
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged += WindowSizeChanged;
+        }
+
+        private void WindowSizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            if (e.Size.Width <= 1000)
+            {
+                this.typical.Visibility = Visibility.Collapsed;
+                this.snapped.Visibility = Visibility.Visible;
+                this.snapped.Width = e.Size.Width;
+            }
+            else
+            {
+                this.typical.Visibility = Visibility.Visible;
+                this.snapped.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void PageUnloaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged -= WindowSizeChanged;
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

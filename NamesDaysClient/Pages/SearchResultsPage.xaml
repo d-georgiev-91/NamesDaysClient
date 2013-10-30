@@ -34,129 +34,132 @@
     </Page.BottomAppBar>
 
     <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
+    This grid acts as a root panel for the page that defines two rows:
+    * Row 0 contains the back button and page title
+    * Row 1 contains the rest of the page layout
     -->
     <Grid Background="#FF0F4E64">
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Grid Name="typical">
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Grid x:Name="resultsPanel" Grid.Row="1">
-            <!--
-            The body of the page in most view states uses an items controls to create multiple radio buttons
-            for filtering above a horizontal scrolling grid of search results
-        -->
-            <Grid x:Name="typicalPanel">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+            <Grid x:Name="resultsPanel" Grid.Row="1">
+                <!--
+                The body of the page in most view states uses an items controls to create multiple radio buttons
+                for filtering above a horizontal scrolling grid of search results
+                -->
+                <Grid x:Name="typicalPanel">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                <GridView
-                    x:Name="resultsGridView"
-                    AutomationProperties.AutomationId="ResultsGridView"
-                    AutomationProperties.Name="Search Results"
-                    TabIndex="1"
-                    Margin="0,-238,0,0"
-                    Padding="110,240,110,46"
-                    SelectionMode="None"
-                    IsSwipeEnabled="false"
-                    IsItemClickEnabled="False"
-                    ItemsSource="{Binding Results}"
-                    ItemTemplate="{StaticResource SearchResultsTemplate}">
+                    <GridView
+                        x:Name="resultsGridView"
+                        AutomationProperties.AutomationId="ResultsGridView"
+                        AutomationProperties.Name="Search Results"
+                        TabIndex="1"
+                        Margin="0,-238,0,0"
+                        Padding="110,240,110,46"
+                        SelectionMode="None"
+                        IsSwipeEnabled="false"
+                        IsItemClickEnabled="False"
+                        ItemsSource="{Binding Results}"
+                        ItemTemplate="{StaticResource SearchResultsTemplate}">
 
-                    <GridView.ItemContainerStyle>
-                        <Style TargetType="Control">
-                            <Setter Property="Height" Value="70"/>
-                            <Setter Property="Margin" Value="0,0,38,8"/>
-                        </Style>
-                    </GridView.ItemContainerStyle>
-                </GridView>
+                        <GridView.ItemContainerStyle>
+                            <Style TargetType="Control">
+                                <Setter Property="Height" Value="70"/>
+                                <Setter Property="Margin" Value="0,0,38,8"/>
+                            </Style>
+                        </GridView.ItemContainerStyle>
+                    </GridView>
+                </Grid>
+
+                <Grid x:Name="snappedPanel" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ListView
+                        x:Name="resultsListView"
+                        AutomationProperties.AutomationId="ResultsListView"
+                        AutomationProperties.Name="Search Results"
+                        TabIndex="1"
+                        Grid.Row="1"
+                        Margin="10,0,0,0"
+                        Padding="0,0,0,60"
+                        SelectionMode="None"
+                        IsSwipeEnabled="false"
+                        IsItemClickEnabled="False"
+                        ItemsSource="{Binding Results}"
+                        ItemTemplate="{StaticResource SearchResultsTemplate}">
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="Control">
+                                <Setter Property="Height" Value="70"/>
+                                <Setter Property="Margin" Value="0,0,18,8"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </Grid>
             </Grid>
 
-            <Grid x:Name="snappedPanel" Visibility="Collapsed">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <ListView
-                    x:Name="resultsListView"
-                    AutomationProperties.AutomationId="ResultsListView"
-                    AutomationProperties.Name="Search Results"
-                    TabIndex="1"
-                    Grid.Row="1"
-                    Margin="10,0,0,0"
-                    Padding="0,0,0,60"
-                    SelectionMode="None"
-                    IsSwipeEnabled="false"
-                    IsItemClickEnabled="False"
-                    ItemsSource="{Binding Results}"
-                    ItemTemplate="{StaticResource SearchResultsTemplate}">
-
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="Control">
-                            <Setter Property="Height" Value="70"/>
-                            <Setter Property="Margin" Value="0,0,18,8"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-            </Grid>
-        </Grid>
-
-        <!-- Back button and page title -->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+            <!-- Back button and page title -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                       IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
-            <TextBlock x:Name="resultText" Grid.Column="2" Text="Резултати за &#x00a0;" IsHitTestVisible="false" Style="{StaticResource SubheaderTextBlockStyle}"
-                       TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,0,40" />
-            <TextBlock x:Name="queryText" Grid.Column="3" Text="{Binding QueryText}" IsHitTestVisible="false" Style="{StaticResource SubheaderTextBlockStyle}"
-                       TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,0,40" />
-        </Grid>
+                <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                           IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+                <TextBlock x:Name="resultText" Grid.Column="2" Text="Резултати за &#x00a0;" IsHitTestVisible="false" Style="{StaticResource SubheaderTextBlockStyle}"
+                           TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,0,40" />
+                <TextBlock x:Name="queryText" Grid.Column="3" Text="{Binding QueryText}" IsHitTestVisible="false" Style="{StaticResource SubheaderTextBlockStyle}"
+                           TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,0,40" />
+            </Grid>
 
-        <TextBlock
-            x:Name="noResultsTextBlock"
-            Grid.Row="1"
-            Margin="120,50,0,0"
-            Visibility="{Binding AreResultsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"
-            Style="{StaticResource SubheaderTextStyle}"
-            Text="Не съществува такова име." />
-        
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="ResultStates">
-                <VisualState x:Name="ResultsFound" />
-                <!-- When there are no results, the results panel is replaced with an informational TextBlock -->
-                <VisualState x:Name="NoResultsFound">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="resultsGridView" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="noResultsTextBlock" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+            <TextBlock
+                x:Name="noResultsTextBlock"
+                Grid.Row="1"
+                Margin="120,50,0,0"
+                Visibility="{Binding AreResultsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Style="{StaticResource SubheaderTextStyle}"
+                Text="Не съществува такова име." />
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="ResultStates">
+                    <VisualState x:Name="ResultsFound" />
+                    <!-- When there are no results, the results panel is replaced with an informational TextBlock -->
+                    <VisualState x:Name="NoResultsFound">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="resultsGridView" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="noResultsTextBlock" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+        <Image Name="snapped" Source="../Assets/SplashScreen.png" Visibility="Collapsed" HorizontalAlignment="Center" />
     </Grid>
 </Page>

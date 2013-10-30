@@ -35,7 +35,7 @@ namespace NamesDaysClient
 
         private void OnCommandsRequested(SettingsPane settingsPane, SettingsPaneCommandsRequestedEventArgs e)
         {
-            SettingsCommand privacyPolicy = new SettingsCommand("privacyPolicy", "PrivacyPolicy", (handler) =>
+            SettingsCommand privacyPolicy = new SettingsCommand("privacyPolicy", "Privacy Policy", (handler) =>
             {
                 SettingsFlyouts.PrivacyPolicy ppf = new SettingsFlyouts.PrivacyPolicy();
                 ppf.Show();

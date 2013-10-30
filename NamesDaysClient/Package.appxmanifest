@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="27192DenisGeorgiev.304338688F477" Publisher="CN=34AD5A1C-8629-4E63-A87A-0E21F4EC45B4" Version="1.1.0.0" />
+  <Identity Name="27192DenisGeorgiev.304338688F477" Publisher="CN=34AD5A1C-8629-4E63-A87A-0E21F4EC45B4" Version="1.1.0.2" />
   <Properties>
     <DisplayName>Именни дни</DisplayName>
     <PublisherDisplayName>Denis Georgiev</PublisherDisplayName>
